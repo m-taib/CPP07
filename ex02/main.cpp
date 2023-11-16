@@ -1,6 +1,6 @@
 #include <iostream>
 #include "Array.hpp"
-
+#include <cmath>
 #define MAX_VAL 750
 int main(int, char**)
 {
@@ -27,7 +27,7 @@ int main(int, char**)
             return 1;
         }
     }
-    /*try
+    try
     {
         numbers[-2] = 0;
     }
@@ -47,7 +47,7 @@ int main(int, char**)
     for (int i = 0; i < MAX_VAL; i++)
     {
         numbers[i] = rand();
-    }
-    delete [] mirror;*///
+    } 
+    delete [] mirror;
     return 0;
 }

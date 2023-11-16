@@ -16,10 +16,10 @@ class Array
 		~Array();
 		
 		T& operator[](int index);
-		int		size() const;
+		unsigned int		size() const;
 		
 	private :
-		int		n;
+		unsigned int		n;
 		T		*elements; 
 };
 
@@ -40,6 +40,7 @@ Array<T>::Array(unsigned int n)
 template<typename T>
 Array<T>::Array(const Array& rhs)
 {
+	elements = NULL;
 	*this = rhs;
 }
 
@@ -47,12 +48,14 @@ template<typename T>
 Array<T>& Array<T>::operator=(const Array& rhs)
 {
 	int		i;
-
+	
 	i = -1;
 	if (this == &rhs)
 		return (*this);
-	if (!elements)
-		elements = new T[n];
+	if (elements)
+		delete[] elements;
+	n = rhs.n;
+	elements = new T[n];
 	while (++i < n)
 		elements[i] = rhs.elements[i];
 	return (*this);
@@ -67,7 +70,7 @@ T& Array<T>::operator[](int index)
 }
 
 template<typename T>
-int		Array<T>::size() const
+unsigned int		Array<T>::size() const
 {
 	return (n);
 }
@@ -75,6 +78,7 @@ int		Array<T>::size() const
 template<typename T>
 Array<T>::~Array()
 {
-	delete[] elements;
+	if(elements)
+		delete[] elements;
 }
 #endif
